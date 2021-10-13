@@ -67,13 +67,29 @@ namespace ConsoleApplication1
                     Console.WriteLine($"Назва: {name}\nГрупа: {group}\nЛокацiя: {location}\nПопуляцiя: {population}");
             }
         }
-
         static void Main(string[] args)
         {
-            antelope Antelope = new antelope("Джейран", "A", "Азiя", 30000);
-            Antelope.display_info();
-            antelope Antelope2 = new antelope("Гну", "B", "Африка", 560000);
-            Antelope2.display_info();
+            antelope[] Antelope = new antelope[10];
+            Antelope[0] = new antelope("Джейран", "A", "Азiя", 30000);
+            Antelope[0].display_info();
+            Antelope[1] = new antelope("Гну", "B", "Африка", 560000);
+            Antelope[1].display_info();
+            Antelope[2] = new antelope("Бейза", "H", "Африка", 2500);
+            Antelope[2].display_info();
+            Antelope[3] = new antelope("Антилопа_4", "H", "Африка", 50000);
+            Antelope[3].display_info();
+            Antelope[4] = new antelope("Антилопа_5", "A", "Азiя", 10000);
+            Antelope[4].display_info();
+            Antelope[5] = new antelope("Антилопа_6", "U", "Південна Америка", 70000);
+            Antelope[5].display_info();
+            Antelope[6] = new antelope("Антилопа_7", "B", "Африка", 180000);
+            Antelope[6].display_info();
+            Antelope[7] = new antelope("Антилопа_8", "G", "Азiя", 500000);
+            Antelope[7].display_info();
+            Antelope[8] = new antelope("Антилопа_9", "H", "Південна Америка", 5000);
+            Antelope[8].display_info();
+            Antelope[9] = new antelope("Антилопа_10", "H", "Африка", 980000);
+            Antelope[9].display_info();
             Console.WriteLine("Кiлькiсть об'єктiв в класi: " + antelope.count_of_objects);
         }
     }
