@@ -13,6 +13,7 @@ namespace ConsoleApplication1
         class antelope
         {
             public static int count_of_objects = 0;
+            public static int population_filter;
             private string name;
             private string group;
             private string location;
@@ -29,7 +30,7 @@ namespace ConsoleApplication1
             public string Name
             {
                 get { return name; }
-                set { name = Regex.Replace(value, @"[^A-zА-я]+", String.Empty); }
+                set { name = Regex.Replace(value, @"[^A-zА-я0-9]+", String.Empty); }
             }
             public string Group
             {
@@ -48,7 +49,7 @@ namespace ConsoleApplication1
             public string Location
             {
                 get { return location; }
-                set { location = Regex.Replace(value, @"[^A-zА-я]+", String.Empty); }
+                set { location = Regex.Replace(value, @"[^A-zА-я ]+", String.Empty); }
             }
             public int Population
             {
@@ -64,7 +65,14 @@ namespace ConsoleApplication1
             public void display_info()
             {
                 if (!err)
-                    Console.WriteLine($"Назва: {name}\nГрупа: {group}\nЛокацiя: {location}\nПопуляцiя: {population}");
+                    Console.WriteLine($"Назва: {name}\nГрупа: {group}\nЛокацiя: {location}\nПопуляцiя: {population}\n");
+            }
+            public bool filter()
+            {
+                if (population > antelope.population_filter)
+                    return true;
+                else
+                    return false;
             }
         }
         static void Main(string[] args)
@@ -80,17 +88,23 @@ namespace ConsoleApplication1
             Antelope[3].display_info();
             Antelope[4] = new antelope("Антилопа_5", "A", "Азiя", 10000);
             Antelope[4].display_info();
-            Antelope[5] = new antelope("Антилопа_6", "U", "Південна Америка", 70000);
+            Antelope[5] = new antelope("Антилопа_6", "U", "Пiвденна Америка", 70000);
             Antelope[5].display_info();
             Antelope[6] = new antelope("Антилопа_7", "B", "Африка", 180000);
             Antelope[6].display_info();
             Antelope[7] = new antelope("Антилопа_8", "G", "Азiя", 500000);
             Antelope[7].display_info();
-            Antelope[8] = new antelope("Антилопа_9", "H", "Південна Америка", 5000);
+            Antelope[8] = new antelope("Антилопа_9", "H", "Пiвденна Америка", 5000);
             Antelope[8].display_info();
             Antelope[9] = new antelope("Антилопа_10", "H", "Африка", 980000);
             Antelope[9].display_info();
             Console.WriteLine("Кiлькiсть об'єктiв в класi: " + antelope.count_of_objects);
+            Console.WriteLine("\nВведiть мiнiмальне значення популяцiї для пошуку за критерiєм: ");
+            antelope.population_filter = int.Parse(Console.ReadLine());
+            Console.WriteLine("Об'єкти, популяцiя яких бiльша, нiж " + antelope.population_filter + ": \n");
+            for (int i = 0; i < antelope.count_of_objects; i++)
+                if (Antelope[i].filter())
+                    Antelope[i].display_info();
         }
     }
 }
